@@ -1,0 +1,18 @@
+/*Standard library static array*/
+
+array <int, 5> ax = {1, 2, 3, 4, 5};	/*array with type int fixed size as 5 and uses ax as name of variables => wrap function*/
+1. ax.front() : first element inside the array
+2. ax.back() : final element inside the array
+3. var.pushback(x) : only in dynamic array, put x as final variable in the end of array
+
+/*------------------------------------------------------------------------------------------*/
+1. Static Array
+- compile time initialized
+- stored on stack
+
+2. Dynamic Array
+- is an array which is created at runtime
+- grow/shrink throughout the life of running program
+- allocated and delocated on the heap
+
+3. Recursion : a problem that can be broke down into smaller sub-problems
