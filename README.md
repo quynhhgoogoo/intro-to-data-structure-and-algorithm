@@ -1,4 +1,4 @@
-# intro-to-data-structure-and-algorithm
+# Intro to data structure and algorithm
 Nokia Course Intro to data structure and algorithm in C++
 
 #### Contents
