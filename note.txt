@@ -17,3 +17,7 @@ array <int, 5> ax = {1, 2, 3, 4, 5};	/*array with type int fixed size as 5 and u
 
 3. Recursion : a problem that can be broke down into smaller sub-problems
 - Vector : is a list of arrays
+
+4. Stack : collection of elements in which items are added and removed in LIFO (Last in First Out)
+- adding elements : a push on stack
+- removing elements : a pop on stack
