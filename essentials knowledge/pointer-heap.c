@@ -1,4 +1,5 @@
-/*malloc: acess to memory on heap*/
+/*malloc: acess to memory on heap
+        returns void pointer*/
 
 //========================= C ===========================================
 #include <stdlib.h>
