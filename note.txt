@@ -25,3 +25,7 @@ array <int, 5> ax = {1, 2, 3, 4, 5};	/*array with type int fixed size as 5 and u
 5. Queue : container for items/elements in which we add and remove from FIFO (First In First Out)
 - dequeing : move items out
 - enqueing : add items in
+
+6. Linked List
+- An element on LinkedList is a Node. A node is a struct
+- struct with two main elements : data in that node and a pointer to next node
