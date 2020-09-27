@@ -60,7 +60,7 @@ void RDisplayD(struct Node *p){
 }
 
 /*count the number of nodes inside linkedlist*/
-int count(struct Node *p){
+int CountNode(struct Node *p){
     int count = 0;
     while(p!=NULL){
         count++;
@@ -101,10 +101,54 @@ struct Node *LinearSearch(struct Node *p, int key){
     }
 }
 
+/*Relocate a node inside linkedlist*/
+void RelocateNode(struct Node *p, int key){
+    struct Node *q = NULL;
+    
+    while(p!=NULL){
+        if(p->data = key){
+            /*Link previous node to next node*/
+            q->next = p->next;
+            /*Link current node to first node*/
+            p->next = head;
+            head = p;
+        }
+        /*move p to next node and p to keep track on previous node*/
+        q = p;
+        p = p->next;
+    }
+}
+
+void InsertNode(struct Node *p, int position, int value){
+    
+    /*Create a pointer to track on newly created node*/
+    struct Node *t;
+    int length = CountNode(p);
+    
+    if(position<0 || position>length){
+        return;
+    }
+    t = (struct Node*)malloc(sizeof(struct Node));
+    t->data = value;
+
+    if(position == 0){
+        t->next = head;
+        head = t;
+    }
+    else{
+        for(int i = 0; i < position-1; i++){
+            p = p->next;
+        }
+        t->next = p->next;
+        p->next = t;
+    }
+}
+
 int main(){
     int A[] = {3,5,7,20,9};
 
     Create_LinkedList(A, 5);
+    InsertNode(head, 4, 15);
     
     RDisplayA(head);
     RDisplayD(head);
