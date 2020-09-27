@@ -59,6 +59,26 @@ void RDisplayD(struct Node *p){
     }
 }
 
+/*count the number of nodes inside linkedlist*/
+int count(struct Node *p){
+    int count = 0;
+    while(p!=NULL){
+        count++;
+        p = p->next;
+    }
+    return count;
+}
+
+/*calculate the sum of linkedlist*/
+int Sum(struct Node *p){
+    int sum = 0;
+    while(p){
+        sum = sum + p->data;
+        p = p->next;
+    }
+    return(sum);
+}
+
 int main(){
     int A[] = {3,5,7,20,9};
 
