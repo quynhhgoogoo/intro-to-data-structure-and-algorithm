@@ -12,6 +12,7 @@ struct Node{
 
 struct Node *head = NULL;
 
+/*create linkedlist based on given array*/
 void Create_LinkedList(int A[], int n){
     int i;
     struct Node *current, *tail;
