@@ -61,13 +61,6 @@ void InsertNodeSort(struct Node *p, int value){
    }
 }
 
-void Display_LinkedList(struct Node *p){
-    while(p!=NULL){
-        printf("%d ", p->data);
-        p=p->next;
-    }
-}
-
 int main(){
     createLinkedList(4);
     InsertNodeSort(first,5);

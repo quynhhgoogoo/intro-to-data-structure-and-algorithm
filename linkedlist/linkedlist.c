@@ -44,22 +44,6 @@ void Display_LinkedList(struct Node *p){
     }
 }
 
-/*print nodes in linked list in ascending order recursively*/
-void RDisplayA(struct Node *p){
-    if(p!=NULL){
-        printf("%d ", p->data);
-        RDisplayA(p->next);
-    }
-}
-
-/*print nodes in linked list in descending order recursively*/
-void RDisplayD(struct Node *p){
-    if(p!=NULL){
-        RDisplayD(p->next);
-        printf("%d ", p->data);
-    }
-}
-
 /*count the number of nodes inside linkedlist*/
 int CountNode(struct Node *p){
     int count = 0;
@@ -120,10 +104,10 @@ void RelocateNode(struct Node *p, int key){
     }
 }
 
-void InsertNode(struct Node *p, int position, int value){
+void InsertNode(int position, int value){
     
     /*Create a pointer to track on newly created node*/
-    struct Node *t;
+    struct Node *t, *p=head;
     int length = CountNode(p);
     
     if(position<0 || position>length){
@@ -146,8 +130,8 @@ void InsertNode(struct Node *p, int position, int value){
 }
 
 /*delete a node*/
-int deleteNode(struct Node *p, int index){
-    struct Node *q = NULL;
+int deleteNode(int index){
+    struct Node *q = NULL, *p = head;
     int x = -1;
 
     if(index < 1 || index > CountNode(head)){
@@ -173,17 +157,61 @@ int deleteNode(struct Node *p, int index){
     }
 }
 
+/*Check if list is sorted*/
+int isSorted(){
+    struct Node *p = head;
+    int x = -65536;
+
+    while(p!=NULL){
+        /*if pointer is not sorted*/
+        if(p->data < x){
+            return 1;
+        }
+        x=p->data;
+        p=p->next;
+    }
+    /*if pointer is sorted*/
+    return 0;
+}
+
+/*remove duplicated node in sorted linkedlist*/
+void removeDuplicate(){
+    struct Node *p = head, *q=p->next;
+
+    while(p!=NULL){
+        if(p->data != q->data){
+            p = q;
+            q = q->next;
+        }
+        else{
+            p->next = q->next;
+            free(q);
+            q = q->next;
+        }
+    }
+}
+
 int main(){
-    int A[] = {3,5,7,20,9};
+    int A[] = {3,3,5,7,20,30,9};
 
     Create_LinkedList(A, 5);
-    InsertNode(head, 4, 15);
+    InsertNode(4, 15);
     
-    printf("Delete the node %d\n ", deleteNode(head, 3));
+    printf("Delete the node %d\n ", deleteNode(3));
     Display_LinkedList(head);
 
     printf("Maximum value of linkedlist is: %d \n", MaxNode(head));
-    printf("%d", LinearSearch(head, 20));
+    printf("%d ", LinearSearch(head, 20));
+
+    if(isSorted(head) == 1){
+        printf("\nLinkedlist is not sorted");
+    }
+    else{
+        printf("\nLinkedlist is sorted");
+    }
+
+    removeDuplicate();
+    Display_LinkedList(head);
 
     return 0;
 }
