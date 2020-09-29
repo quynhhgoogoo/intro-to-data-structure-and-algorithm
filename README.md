@@ -1,5 +1,4 @@
-# intro-to-data-structure-and-algorithm
-Basic data structure and algorithm problems in C/C++
+# Basic data structure and algorithm problems in C/C++
 1. Linked List : Single LinkedList, Circular LinkedList, Doubly Linkedlist, Circular Doubly LinkedList
 2. Stack : Array, LinkedList, Parenthesis Matching Infix to Postfix Conversion.
 3. Queue: Single Pointer, Double Pointers, Array, LinkedList, 2 Stacks, Circular Queue
