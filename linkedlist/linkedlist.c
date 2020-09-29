@@ -145,17 +145,44 @@ void InsertNode(struct Node *p, int position, int value){
     }
 }
 
+/*delete a node*/
+int deleteNode(struct Node *p, int index){
+    struct Node *q = NULL;
+    int x = -1;
+
+    if(index < 1 || index > CountNode(head)){
+        return -1;
+    }
+    /*if first node is deleted*/
+    if(index  == 1){
+        q = head;
+        x = q->data;
+        head = head->next;
+        free(q);
+        return x;
+    }
+    else{
+        for(int i = 0; i<index-1; i++){
+            q = p;
+            p = p->next;
+        }
+        q->next = p->next;
+        x = p->data;
+        free (p);
+        return x;
+    }
+}
+
 int main(){
     int A[] = {3,5,7,20,9};
 
     Create_LinkedList(A, 5);
     InsertNode(head, 4, 15);
     
-    RDisplayA(head);
-    RDisplayD(head);
-    //Display_LinkedList(head);
+    printf("Delete the node %d\n ", deleteNode(head, 3));
+    Display_LinkedList(head);
 
-    printf("/nMaximum value of linkedlist is: %d ", MaxNode(head));
+    printf("Maximum value of linkedlist is: %d \n", MaxNode(head));
     printf("%d", LinearSearch(head, 20));
 
     return 0;
