@@ -1,4 +1,4 @@
-/*Compare consecutive pair of elements everytime*/
+/*Divide array into two lists: sorted and unsorted*/
 #include <stdio.h>
 #include<stdlib.h>
 
@@ -32,6 +32,7 @@ int main(){
     int A[] = {3,7,9,1,0,6,6,5,11,12}, n =10;
     int i;
 
+    InsertionSort(A,n);
 
     for (i=0; i<n; i++){
         printf("%d ", A[i]);
