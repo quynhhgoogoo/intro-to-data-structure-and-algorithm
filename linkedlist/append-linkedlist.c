@@ -6,11 +6,11 @@ struct Node{
     struct Node *next;
 };
 
-/*head: points to first node.
-  tail: points to last node
-  current: points current node -> is used to create a node*/
+/*first: points to first ll.
+  second: points to 2nd ll
+  third: points to newly merged ll*/
 
-struct Node *first = NULL, *second = NULL;
+struct Node *first = NULL, *second = NULL, *third = NULL;
 
 /*create linkedlist based on given array*/
 struct Node* Create_LinkedList(struct Node *head, int A[], int n){
@@ -43,17 +43,73 @@ void Display_LinkedList(struct Node *p){
         printf("%d ", p->data);
         p=p->next;
     }
+    printf("\n");
+}
+
+/*concatenating two linkedlist together*/
+void Concat(struct Node *p, struct Node *q){
+    third = p;
+    while(p->next != NULL){
+        p = p->next;
+    }
+    p->next = q;
+}
+
+/*merge two sorted linkedlists together*/
+void MergeLinkedList(struct Node *p, struct Node *q){
+    struct Node *last;
+
+    /*create the first node in the newly merged linkedlist*/
+    if(p->data < q->data){
+        third = last = p;
+        p = p->next;
+        last->next = NULL;
+    }
+    else{
+        third = last = q;
+        q = q ->next;
+        last->next = NULL;
+    }
+
+    /*second ++ node*/
+    while(q != NULL && p!= NULL){
+        if(p->data < q->data){
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else{
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+
+    /*adding last node to ll*/
+    if(p){
+        last->next = p;
+        last = p;
+    }
+    if(q){
+        last->next = q;
+        last = q;
+    }
 }
 
 int main(){
-    int A[] = {3,3,5,7,20,30,9};
-    int B[] = {3,2,70};
+    int A[] = {3,3,5,7,9,20,30};
+    int B[] = {2,3,70};
 
-    first = Create_LinkedList(first, A, 5);  
+    first = Create_LinkedList(first, A, 6);  
     Display_LinkedList(first);
 
     second = Create_LinkedList(second, B, 3);  
     Display_LinkedList(second);
+    
+    MergeLinkedList(first,second);
+    Display_LinkedList(third);
 
     return 0;
 }
