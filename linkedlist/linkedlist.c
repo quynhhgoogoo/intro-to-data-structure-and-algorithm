@@ -84,6 +84,7 @@ struct Node *LinearSearch(struct Node *p, int key){
         }
         p=p->next;
     }
+    return NULL;
 }
 
 /*Relocate a node inside linkedlist*/
