@@ -63,6 +63,9 @@ int peek(struct Stack st, int index){
     if(st.top-index+1 < 0){
         printf("Invalid index\n");
     }
+    if(index>st.size){
+        printf("Invalid index\n");
+    }
     x = st.S[st.top-index+1];
     return x;
 }
