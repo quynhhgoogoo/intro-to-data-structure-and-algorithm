@@ -16,18 +16,18 @@ struct Queue{
     int size;
     int front;
     int rear;
-    Node**Q;
+    struct Node **Q;
 };
 
 /*Initialize a new queue*/
 void createQueue(struct Queue *q, int size){
     q->size = size;
     q->front = q->rear = 0;
-    q->Q = (Node**)malloc(q->size*sizeof(Node *));
+    q->Q = (struct Node **)malloc(q->size*sizeof(struct Node *));
 }
 
 /*Enqueue the queue*/
-void enqueue(struct Queue *q, Node *x){
+void enqueue(struct Queue *q, struct Node *x){
     if(q->rear = q->size-1){
         printf("Queue is full");
     }
@@ -38,8 +38,8 @@ void enqueue(struct Queue *q, Node *x){
 }
 
 /*Dequeue the queue*/
-Node* dequeue(struct Queue *q){
-    Node* x = NULL;
+struct Node* dequeue(struct Queue *q){
+    struct Node* x = NULL;
 
     if (q->front == q->rear){
         printf("Queue is empty\n");

@@ -41,7 +41,8 @@ void createTree(){
             /*Attach newly created left node to the tree*/
             p->lchild = t;
             enqueue(&q, t);
-
+        }
+        
         /*Adding right child*/
         printf("Enter right child ");
         scanf("%d", &x);
