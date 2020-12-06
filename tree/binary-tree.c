@@ -1,7 +1,5 @@
 /*Implement a binary tree with queue*/
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "binary_tree.h"
 
 struct Node *root= NULL;
