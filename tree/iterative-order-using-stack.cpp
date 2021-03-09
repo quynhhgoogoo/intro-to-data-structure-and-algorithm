@@ -198,8 +198,6 @@ void Tree::Postorder(Node *p) {
     }
 }
 
-/*Tranversing through tree itteratively*/
-
 int main(){
     Tree bt;
 
@@ -217,6 +215,12 @@ int main(){
     cout << "Postorder: " << flush;
     bt.Postorder();
     cout << endl;
+
+    cout << "Levelorder: " << flush;
+    bt.Levelorder();
+    cout << endl;
+ 
+    cout << "Height: " << bt.Height() << endl;
 
     return 0;
 }
