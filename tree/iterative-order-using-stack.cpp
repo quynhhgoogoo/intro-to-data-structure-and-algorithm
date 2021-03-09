@@ -94,8 +94,10 @@ void Tree::CreateTree(){
     q.emplace(root);
 
     while( !q.empty()){
-        /*Move pointer to the new address and pop the one element out*/
+        /*Move pointer to the new address*/
         p = q.front();
+
+        /*Pop one element out of queue*/
         q.pop();
 
         /*Create new node for left child and add in queue*/
@@ -144,6 +146,30 @@ int Tree::Height(Node *p){
     }
     else{
         return r+1;
+    }
+}
+
+/*Traversing through tree level by level*/
+void Tree::Levelorder(Node *p){
+    queue <Node *> q;
+    /*Store root element inside queue*/
+    cout << root->data << ", " << flush;
+    q.emplace(root);
+
+    while (!q.empty()){
+        p = q.front();
+        q.pop();
+
+        /*Iterrately traverse each level of tree*/
+        if (p->lchild){
+            cout << p->lchild->data << ", " << flush;
+            q.emplace(p->lchild);
+        }
+
+        if(p->rchild){
+            cout << p->rchild->data << ", " << flush;
+            q.emplace(p->rchild)
+        }
     }
 }
 
