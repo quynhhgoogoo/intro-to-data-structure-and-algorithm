@@ -27,6 +27,10 @@ class Tree{
             Preorder(root);
         }
         Node* generateFromTraversal(int inorder[], int preorder[], int inStart, int inEnd);
+        int Height(Node *p);
+        int Count(Node *p);
+        int Sum(Node *p);
+        int CountDeg2Node(Node *p);
 };
 
 Tree::Tree() {
@@ -58,6 +62,47 @@ int searchInorder(int inArray[], int inStart, int inEnd, int data){
         }
     }
     return -1;
+}
+
+/*Calculate tree's height*/
+int Tree::Height(Node *p){
+    int l = 0;
+    int r = 0;
+
+    if(p != nullptr){
+        l = Height(p->lchild);
+        r = Height(p->rchild);
+        return l+r+1;
+    }
+    return 0;
+}
+
+/*Calculate sum of tree*/
+int Tree::Sum(Node *p){
+    int l = 0;
+    int r = 0;
+    if(p != nullptr){
+        l = Sum(p->lchild);
+        r = Sum(p->rchild);
+        return l+r+p->data;
+    }
+    return 0;
+}
+
+int Tree::CountDeg2Node(Node *p){
+    int l = 0;
+    int r = 0;
+    if(p != nullptr){
+        l = CountDeg2Node(p->lchild);
+        r = CountDeg2Node(p->rchild);
+        if(p->lchild && p->rchild){
+            return l+r+1;
+        }
+        else{
+            return l+r;
+        }
+    }
+    return 0;
 }
 
 Node* Tree::generateFromTraversal(int *inorder, int *preorder, int inStart, int inEnd){
