@@ -133,7 +133,7 @@ struct Node *Delete(struct Node *p, int key){
     }
     
     /* if delete node is a leaf node */
-    if(p->lchild == NULL && p->rchild == NULL){
+    if (p->lchild == NULL && p->rchild == NULL){
         if(p==root){
             root == NULL;
         }
@@ -152,7 +152,7 @@ struct Node *Delete(struct Node *p, int key){
     /* If key value is found */
     else {
         /* Check the height of inorder precessor and successor node */
-        if (Height(p->lchild) < Height(p->rchild)){
+        if (Height(p->lchild) > Height(p->rchild)){ 
             /* Move precessor node to root */
             q = InPre(p->lchild);
             p->data = q->data;
