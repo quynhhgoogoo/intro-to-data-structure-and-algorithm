@@ -1,11 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "binary_tree.h"
 
 struct Node{
     int data;
     struct Node *lchild;
     struct Node *rchild;
 }*root = NULL;
+
+/* Create BST from Preorder 
+    input: preorder BST as an array and array's size*/
+void createFromPreorder(int *pre, int n){
+    int i = 0;
+    struct Node *t;
+    struct Node *p = root;
+    
+    /* Create root node */
+    root = (struct Node *)malloc(sizeof(struct Node));
+    root->data = pre[i];
+    root->lchild = NULL;
+    root->rchild = NULL;
+
+    /* Create a stack to store the check data */
+    struct Stack stk;
+    create(&stk);
+    
+    while(i < n){
+        /* If node is inserted as a left child of current node */
+        if (pre[i] < p->data){
+            t = (struct Node *)malloc(sizeof(struct Node));
+            t->data = pre[i];
+            t->lchild = NULL;
+            t->rchild = NULL;
+            /* Assign new value to as a left child of current node */
+            p->lchild = t;
+            /* Save current node's value to stack */
+            push(&stk, p->data);
+            p = t;
+            i++; 
+        }
+        else{
+            if(pre[i] > p->data && pre[i] < empty(pop(p))){
+                t = (struct Node *)malloc(sizeof(struct Node));
+                t->data = pre[i];
+                t->lchild = NULL;
+                t->rchild = NULL;
+                p->rchild = t;
+                p = t; 
+            }
+            else{
+                p = stackTop(stk);
+                pop(&stk);
+            }
+        }
+    }
+}
 
 /* Insert elements in binary search tree itteratively */
 void Insert(int key){
@@ -182,6 +231,10 @@ int main(){
     struct Node *temp;
     temp = Search(20);
     temp = Search(80);
+
+    int A = [30,50,67,80,12,45];
+    createFromPreorder(&A, 6);
+    Inorder(root);
 
     return 0;
 }
