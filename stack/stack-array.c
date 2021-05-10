@@ -55,6 +55,14 @@ int pop(struct Stack *st){
     return x;
 }
 
+/*check if stack is empty*/
+int isEmpty(struct Stack *st){
+    if(st->top == -1){
+        return 1;
+    }
+    return 0;
+}
+
 /*Input : index of search element
   Function: Searching for elements's value inside stack*/
 
@@ -68,14 +76,6 @@ int peek(struct Stack st, int index){
     }
     x = st.S[st.top-index+1];
     return x;
-}
-
-/*check if stack is empty*/
-int isEmpty(struct Stack *st){
-    if(st->top == -1){
-        return 1;
-    }
-    return 0;
 }
 
 /*check if stack is full*/

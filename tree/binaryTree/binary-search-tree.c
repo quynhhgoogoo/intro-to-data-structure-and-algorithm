@@ -232,8 +232,8 @@ int main(){
     temp = Search(20);
     temp = Search(80);
 
-    int A = [30,50,67,80,12,45];
-    createFromPreorder(&A, 6);
+    int A[] = {30,50,67,80,12,45};
+    createFromPreorder(A, 6);
     Inorder(root);
 
     return 0;
