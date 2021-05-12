@@ -34,6 +34,31 @@ int BalanceFactor(struct Node *p){
 }
 
 
+/* LR Rotation */
+struct Node *LRRotation(struct Node *p){
+    struct Node *pl = p->lchild;
+    struct Node *plr = pl->rchild;
+
+    /* Relocate child node of new root */
+    pl->rchild = plr->lchild;
+    p->lchild = plr->rchild;
+
+    /* Assign new node to new childs */
+    plr->lchild = pl;
+    plr->rchild = p;
+
+    /* Track height of each node after rotation */
+    pl->height = NodeHeight(pl);
+    p->height = NodeHeight(p);
+    plr->height = NodeHeight(plr);
+
+    if(root == p){
+        root = plr;
+    }
+
+    return plr;
+}
+
 /* LL Rotation */
 struct Node *LLRotation(struct Node *p){
     struct Node *pl = p->lchild;
@@ -49,23 +74,52 @@ struct Node *LLRotation(struct Node *p){
     if(root==p){
         root = pl;
     }
-
+    
     return pl;
-}
-
-/* LR Rotation */
-struct Node *LRRotation(struct Node *p){
-    return NULL;
 }
 
 /* RL Rotation */
 struct Node *RLRotation(struct Node *p){
-    return NULL;
+    struct Node *pr = p->rchild;
+    struct Node *prl = pr->lchild;
+
+    /* Relocate child node of new root */
+    pr->lchild = prl->rchild;
+    p->rchild = prl->lchild;
+
+    /* Assign new node to new childs */
+    prl->rchild = pr;
+    prl->lchild = p;
+
+    /* Track height of each node after rotation */
+    pr->height = NodeHeight(pr);
+    p->height = NodeHeight(p);
+    prl->height = NodeHeight(prl);
+
+    if(root == p){
+        root = prl;
+    }
+
+    return prl;
 }
 
 /* RR Rotation */
 struct Node *RRRotation(struct Node *p){
-    return NULL;
+    struct Node *pr = p->rchild;
+    struct Node *prr = pr->rchild;
+
+    /* Place pointer at its parent's node position */
+    pr->lchild = p;
+    p->rchild = prr;
+    
+    p->height = NodeHeight(p);
+    pr->height = NodeHeight(pr);
+
+    if(root==p){
+        root = pr;
+    }
+
+    return pr;
 }
 
 
@@ -107,9 +161,9 @@ struct Node * RInsert(struct Node *p, int key){
 
 
 int main(){
-    root = RInsert(root,10);
+    root = RInsert(root,40);
     RInsert(root, 5);
-    RInsert(root, 2);
-    
+    RInsert(root, 22);
+
     return 0;
 }
