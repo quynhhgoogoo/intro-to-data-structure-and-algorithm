@@ -247,6 +247,9 @@ int main(){
     root = RInsert(root,40);
     RInsert(root, 5);
     RInsert(root, 22);
+    RInsert(root,20);
+
+    Delete(root,22);
 
     return 0;
 }
