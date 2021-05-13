@@ -160,6 +160,89 @@ struct Node * RInsert(struct Node *p, int key){
 }
 
 
+/* Search for inorder precessor of a node */
+struct Node *InPre(struct Node *p){
+    while(p && p->rchild != NULL){
+        p = p->rchild;
+    }
+    return p;
+}
+
+/* Search for inorder successor of a node */
+struct Node *InSuc(struct Node *p){
+    while(p && p->lchild != NULL){
+        p = p->lchild;
+    }
+    return p;
+}
+
+/* Deletion function */
+struct Node *Delete(struct Node *p, int key){
+    
+    /*if tree is empty*/
+    if(p == NULL){
+        return NULL;
+    }
+
+    /* if the node is going to be deleted is leaf node */
+    if(p->lchild == NULL && p->rchild == NULL){
+        /* tree has a single node */
+        if(p == root){
+            root = NULL;
+        }
+        free(p);
+        return NULL;
+    }
+
+    /* search for the node with given key */
+    if(key < p->data){
+        p->lchild = Delete(p->lchild, key);
+    }
+    else if(key > p->data){
+        p->rchild = Delete(p->rchild, key);
+    }
+    /* if node is found */
+    else{
+        struct Node *q;
+        if (NodeHeight(p->lchild) > NodeHeight(p->rchild)){
+            q = InPre(p->lchild);
+            p->data = q->data;
+            p->lchild = Delete(p->lchild, q->data);
+        } 
+        else {
+            q = InSucc(p->rchild);
+            p->data = q->data;
+            p->rchild = Delete(p->rchild, q->data);
+        }       
+    }
+
+    /* Update node's height */
+    p->height = NodeHeight(p);
+
+    /* Apply rotation to balance tree */
+    if (BalanceFactor(p) == 2 & BalanceFactor(p->lchild) == 1){
+        return LLRotation(p);
+    }
+    else if (BalanceFactor(p) == 2 & BalanceFactor(p->lchild) == -1){
+        return LRRotation(p);
+    }
+    /* can used both LL or RL Rotation */
+    else if (BalanceFactor(p) == 2 & BalanceFactor(p->lchild) == 0){
+        return LLRotation(p);
+    }
+    else if (BalanceFactor(p) == -2 & BalanceFactor(p->lchild) == 1){
+        return RRRotation(p);
+    }
+    else if (BalanceFactor(p) == -2 & BalanceFactor(p->lchild) == -1){
+        return RLRotation(p);
+    }
+    /* can be both RR or KR */
+    else if (BalanceFactor(p) == -2 & BalanceFactor(p->lchild) == 0){
+        return RRRotation(p);
+    }  
+}
+
+
 int main(){
     root = RInsert(root,40);
     RInsert(root, 5);
