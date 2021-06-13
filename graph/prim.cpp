@@ -42,11 +42,14 @@ void prim_algorithm(){
     /* Find the minimum cost from explored vertexes to unexplored vertexes
         Update the spanning tree table  */
     for(i=1; i<=n; i++){
-        if (cost[i][u] < cost[i][v]){
-            near[i] = u;
-        }
-        else{
-            near[i] = v;
+
+        if(near[i] != 0){
+            if (cost[i][u] < cost[i][v]){
+                near[i] = u;
+            }
+            else{
+                near[i] = v;
+            }
         }
     }
 
