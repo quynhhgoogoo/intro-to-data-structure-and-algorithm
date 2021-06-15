@@ -21,26 +21,26 @@ int t[2][6];
 void prim_algorithm(){
     int i, j, k, u, v, n=7, min=I;
 
-    /* Searching for mimimum cost value in upper triangle of cost adjancy matrix */
+    /* Searching for mimimum cost edge in upper triangle of cost adjancy matrix */
     for (i = 1; i <= n; i++) {
         for (j = i; j <= n; j++){
             if (cost[i][j] < min){
                 min = cost[i][j];
-                /* Save the position of minimum value on matrix */
+                /* Save the location of minimum cost edge on matrix */
                 u = i;
                 v = j;
             }
         }
     }
-    /* Update vertexes on spanning tree's table */
+    /* Update vertexes on solution's table */
     t[0][0] = u;
     t[1][0] = v;
 
     /* Update vertexes on explored table */
     near[u] = near[v] = 0;
 
-    /* Find the minimum cost from explored vertexes to unexplored vertexes
-        Update the spanning tree table  */
+    /* Find the minimum cost edge between explored vertexes and unexplored vertexes
+        Update the solution table  */
     for(i=1; i<=n; i++){
 
         if(near[i] != 0){
@@ -56,22 +56,22 @@ void prim_algorithm(){
     for (i = 1; i < n-1; i++){
         min = I;
         for(j = 1; j <= n ; j++){
-            /* Iterate through the neighbour list and find the minimum value */
+            /* Iterate through the neighbour list and find the minimum cost edge */
             if (near[j] != 0 && cost[near[j]][j] < min){
                 k = j;
                 min = cost[near[j]][j];
             }
         }
 
-        /* Save value of vertexes that has minimum cost inside matrix */
+        /* Save value of vertexes that has minimum cost edge inside matrix */
         t[0][i] = k;
         t[1][i] = near[k];
         
         /* Update explored vertex */
         near[k] = 0;
 
-        /* Compare the cost path between unexplored vertex with explored vertex 
-        Update spanning tree table*/
+        /* Compare the cost edge between unexplored vertex with explored vertex 
+        Update solution table*/
         for(j = 1; j <= n; j++){
             if(near[j] != 0 && cost[j][k] < cost[j][near[j]]){
                 near[j] = k;
@@ -80,7 +80,7 @@ void prim_algorithm(){
 
     }
 
-    cout << "Update the graph table" << endl;
+    cout << "Update the solution table for spanning tree" << endl;
     for(i = 0; i < n-1; i++){
         cout << "(" << t[0][i] << "," << t[1][i] << ")" << endl;
     }
