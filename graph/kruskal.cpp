@@ -21,7 +21,7 @@ void Union (int u, int v, int s[]){
 
 /* Check if two vertexes are in the same set */
 int Find (int u, int s[]){
-    int v, x;
+    int v = 0, x = u;
 
     /* Trace for parent node of node u */
     while (s[u] > 0){
