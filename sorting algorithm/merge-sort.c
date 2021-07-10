@@ -43,9 +43,17 @@ void IterativeMergeSort (int A[], int n){
             mid = (l + h)/2;
             Merge(A, l, mid, h);
         }
+
+        /* if the number of elements is odd: cannot divide all element into subgroups */
+        if (n-i > p/2){
+            l = i;
+            h = i + p - 1;
+            mid = (l + h)/2;
+            Merge(A, l, mid, n - 1);
+        }
     }
 
-    /* if the number of elements is odd */
+    /* if the number of elements is odd: one element has been left */
     if (p/2 < n){
         Merge(A, 0, p/2 - 1, n - 1);
     }
@@ -54,7 +62,7 @@ void IterativeMergeSort (int A[], int n){
 
 int main() {
     int A[] = {11,5,14,2,6,3,1};
-    int n = 7,i; 
+    int n = 7 ,i; 
     IterativeMergeSort(A, n); 
     
     for(i = 0; i < n; i++) 
