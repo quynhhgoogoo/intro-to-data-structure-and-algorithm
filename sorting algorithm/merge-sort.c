@@ -60,14 +60,35 @@ void IterativeMergeSort (int A[], int n){
 }
 
 
+void RMergeSort(int A[], int l, int h){
+    int mid;
+    /* if there is more than one element inside array */
+    if (l < h){
+        mid = (l + h)/2;
+        RMergeSort(A, l, mid);
+        RMergeSort(A, mid + 1, h);
+        Merge(A, l, mid, h);
+    }
+}
+
+void Print(int A[], int n){
+    for(int i = 0; i < n; i++) 
+        printf("%d ",A[i]); 
+    printf("\n");
+}
+
+
 int main() {
     int A[] = {11,5,14,2,6,3,1};
-    int n = 7 ,i; 
+    int n = 7; 
+    
+    printf("Iterative merge sort: ");
     IterativeMergeSort(A, n); 
-    
-    for(i = 0; i < n; i++) 
-        printf("%d ",A[i]); 
-    printf("\n"); 
-    
+    Print(A, n);
+
+    printf("Recursive merge sort: ");
+    RMergeSort(A, 0, n-1);
+    Print(A,n);
+     
     return 0;
 }
